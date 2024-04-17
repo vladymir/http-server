@@ -69,8 +69,9 @@
     (future
       (with-open [server-sock (ServerSocket. port)]
         (while @running
-          (with-open [sock (.accept server-sock)]
-            (let [msg-in (read-socket sock)
-                  msg-out (handler msg-in)]
-              (send-socket sock msg-out))))))
+          (let [sock (.accept server-sock)]
+            (.start (Thread. #(let [msg-in (read-socket sock)
+                                    msg-out (handler msg-in)]
+                                (send-socket sock msg-out)
+                                (.close sock))))))))
     running))
