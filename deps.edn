@@ -1,0 +1,6 @@
+{:paths ["src" "test" "resources"]
+ :deps
+ {org.clojure/clojure {:mvn/version "1.11.2"}}
+
+ :aliases
+ {:main {:main-opts ["-m" "core"]}}}
