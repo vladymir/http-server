@@ -60,6 +60,7 @@
           {:code "404 Not Found"
            :body (slurp (io/file (str base-dir "404.html")))})
         header (str version " " (:code response))]
+    (println msg-in)
     (str header "\r\n\r\n" (:body response) "\r\n")))
 
 
